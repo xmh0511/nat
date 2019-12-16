@@ -172,10 +172,10 @@ public:
 public:
 	void run() {
 		for (auto i = 0; i < thread_pool_.size(); i++) {
+			worker_[i] = std::make_unique<asio::io_service::work>(io_vec_[i]);
 			thread_pool_[i] = std::make_unique<std::thread>([&io = io_vec_[i]]() {
 				io.run();
 			});
-			worker_[i] = std::make_unique<asio::io_service::work>(io_vec_[i]);
 		}
 	}
 public:
