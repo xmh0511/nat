@@ -60,10 +60,10 @@ public:
 	}
 public:
 	void run() {
+		worker_ = std::make_unique<asio::io_service::work>(io);
 		thread_ = std::make_unique<std::thread>([this]() {
 			io.run();
 		});
-		worker_ = std::make_unique<asio::io_service::work>(io);
 	}
 	void close() {
 		std::error_code ec0;
@@ -141,10 +141,10 @@ public:
 	}
 public:
 	void run() {
+		worker_ = std::make_unique<asio::io_service::work>(io);	
 		thread_ = std::make_unique<std::thread>([this]() {
 			io.run();
 		});
-		worker_ = std::make_unique<asio::io_service::work>(io);
 	}
 public:
 	void connect(std::string const& host,std::string const& port) {
